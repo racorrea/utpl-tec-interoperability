@@ -1,0 +1,185 @@
+{
+  "version": "36.0.0",
+  "artifacts": {
+    "HelloWorldLambdaStack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "HelloWorldLambdaStack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "HelloWorldLambdaStack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/unknown-region",
+      "properties": {
+        "templateFile": "HelloWorldLambdaStack.template.json",
+        "terminationProtection": false,
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/dfb5d426292e84624732a486e618170b13801f70e5e43eabb28401f575257820.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "HelloWorldLambdaStack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-lookup-role-${AWS::AccountId}-${AWS::Region}",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "HelloWorldLambdaStack.assets"
+      ],
+      "metadata": {
+        "/HelloWorldLambdaStack/HelloWorldLambda/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "HelloWorldLambdaServiceRole0CED0093"
+          }
+        ],
+        "/HelloWorldLambdaStack/HelloWorldLambda/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "HelloWorldLambda5A02458E"
+          }
+        ],
+        "/HelloWorldLambdaStack/LambdaDatabase/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LambdaDatabaseServiceRoleB7CF19F8"
+          }
+        ],
+        "/HelloWorldLambdaStack/LambdaDatabase/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LambdaDatabase1FD78CA2"
+          }
+        ],
+        "/HelloWorldLambdaStack/LambdaResponse/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LambdaResponseServiceRoleE820EACA"
+          }
+        ],
+        "/HelloWorldLambdaStack/LambdaResponse/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LambdaResponseServiceRoleDefaultPolicy80A09DAE"
+          }
+        ],
+        "/HelloWorldLambdaStack/LambdaResponse/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LambdaResponse31C02815"
+          }
+        ],
+        "/HelloWorldLambdaStack/HelloWorldEndpoint/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "HelloWorldEndpoint26016DB7"
+          }
+        ],
+        "/HelloWorldLambdaStack/HelloWorldEndpoint/Deployment/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "HelloWorldEndpointDeploymentC19C2A8Dd1c4b6e899b54b6e598ff3caa7ea2327"
+          }
+        ],
+        "/HelloWorldLambdaStack/HelloWorldEndpoint/DeploymentStage.prod/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "HelloWorldEndpointDeploymentStageprod9BAE1CDF"
+          }
+        ],
+        "/HelloWorldLambdaStack/HelloWorldEndpoint/Endpoint": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "HelloWorldEndpoint1C89E108"
+          }
+        ],
+        "/HelloWorldLambdaStack/HelloWorldEndpoint/Default/hello-world/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "HelloWorldEndpointhelloworld6E857335"
+          }
+        ],
+        "/HelloWorldLambdaStack/HelloWorldEndpoint/Default/hello-world/GET/ApiPermission.HelloWorldLambdaStackHelloWorldEndpoint7CF1957F.GET..hello-world": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "HelloWorldEndpointhelloworldGETApiPermissionHelloWorldLambdaStackHelloWorldEndpoint7CF1957FGEThelloworld26847D88"
+          }
+        ],
+        "/HelloWorldLambdaStack/HelloWorldEndpoint/Default/hello-world/GET/ApiPermission.Test.HelloWorldLambdaStackHelloWorldEndpoint7CF1957F.GET..hello-world": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "HelloWorldEndpointhelloworldGETApiPermissionTestHelloWorldLambdaStackHelloWorldEndpoint7CF1957FGEThelloworld44F09ADF"
+          }
+        ],
+        "/HelloWorldLambdaStack/HelloWorldEndpoint/Default/hello-world/GET/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "HelloWorldEndpointhelloworldGETD5C36A39"
+          }
+        ],
+        "/HelloWorldLambdaStack/HelloWorldEndpoint/Default/trx/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "HelloWorldEndpointtrxA9360374"
+          }
+        ],
+        "/HelloWorldLambdaStack/HelloWorldEndpoint/Default/trx/GET/ApiPermission.HelloWorldLambdaStackHelloWorldEndpoint7CF1957F.GET..trx": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "HelloWorldEndpointtrxGETApiPermissionHelloWorldLambdaStackHelloWorldEndpoint7CF1957FGETtrx0879DDB7"
+          }
+        ],
+        "/HelloWorldLambdaStack/HelloWorldEndpoint/Default/trx/GET/ApiPermission.Test.HelloWorldLambdaStackHelloWorldEndpoint7CF1957F.GET..trx": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "HelloWorldEndpointtrxGETApiPermissionTestHelloWorldLambdaStackHelloWorldEndpoint7CF1957FGETtrx2AFEB611"
+          }
+        ],
+        "/HelloWorldLambdaStack/HelloWorldEndpoint/Default/trx/GET/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "HelloWorldEndpointtrxGET6497653F"
+          }
+        ],
+        "/HelloWorldLambdaStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/HelloWorldLambdaStack/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable"
+          }
+        ],
+        "/HelloWorldLambdaStack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/HelloWorldLambdaStack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "HelloWorldLambdaStack"
+    },
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    }
+  }
+}
