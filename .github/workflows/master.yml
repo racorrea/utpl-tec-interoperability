@@ -46,4 +46,10 @@ jobs:
         run: cd $GITHUB_WORKSPACE/semana-3-api-cdk && npx cdk synth
 
       - name: Deploy AWS CDK stack
-        run: cd $GITHUB_WORKSPACE/semana-3-api-cdk && npx cdk deploy --all
+        run: |
+          export CDK_DEFAULT_ACCOUNT = ${{ secrets.CDK_DEFAULT_ACCOUNT }}
+          export CDK_DEFAULT_REGION = ${{ secrets.CDK_DEFAULT_REGION }}
+          echo "Deploying stack..."
+          echo $CDK_DEFAULT_REGION
+          echo $CDK_DEFAULT_ACCOUNT
+          cd $GITHUB_WORKSPACE/semana-3-api-cdk && npx cdk deploy --all
