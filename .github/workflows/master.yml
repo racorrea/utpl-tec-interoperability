@@ -46,6 +46,8 @@ jobs:
         run: |
           export CDK_DEFAULT_ACCOUNT=$CDK_DEFAULT_ACCOUNT
           export CDK_DEFAULT_REGION=$CDK_DEFAULT_REGION
+          echo $CDK_DEFAULT_REGION
+          echo $CDK_DEFAULT_ACCOUNT
           cd $GITHUB_WORKSPACE/semana-3-api-cdk 
           npx cdk bootstrap
       
@@ -54,8 +56,5 @@ jobs:
 
       - name: Deploy AWS CDK stack
         run: |
-          
           echo "Deploying stack..."
-          echo $CDK_DEFAULT_REGION
-          echo $CDK_DEFAULT_ACCOUNT
           cd $GITHUB_WORKSPACE/semana-3-api-cdk && npx cdk deploy --all
