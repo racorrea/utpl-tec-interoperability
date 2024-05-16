@@ -13,10 +13,10 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Install dependencies
-        run: cd ./semana3-api-cdk && npm install
+        run: cd $GITHUB_WORKSPACE/semana3-api-cdk && npm install
 
       - name: Synthesize AWS CDK stack
-        run: cd ./semana3-api-cdk && npx cdk synth
+        run: cd $GITHUB_WORKSPACE/semana3-api-cdk && npx cdk synth
 
       - name: Deploy AWS CDK stack
-        run: cd ./semana3-api-cdk && npx cdk deploy --all
+        run: cd $GITHUB_WORKSPACE/semana3-api-cdk && npx cdk deploy --all
