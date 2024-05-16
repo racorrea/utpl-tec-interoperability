@@ -28,6 +28,9 @@ jobs:
       - name: Set AWS credentials file location
         run: echo "export AWS_SHARED_CREDENTIALS_FILE=$HOME/.aws/credentials" >> $GITHUB_ENV
 
+      - name: Verificar credenciales de AWS
+        run: cat $HOME/.aws/credentials
+
       - name: Install dependencies
         run: cd $GITHUB_WORKSPACE/semana-3-api-cdk && npm install
 
