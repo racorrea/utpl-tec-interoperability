@@ -37,19 +37,18 @@ jobs:
           EOF
 
       - name: Verify AWS credentials
-        run: cat $HOME/.aws/credentials && cat ~/.aws/credentials
+        run: cat $HOME/.aws/credentials
+
+      - name: Configure Environment Variables
+        run: |
+          export CDK_DEFAULT_ACCOUNT=${{ vars.CDK_DEFAULT_ACCOUNT }}
+          export CDK_DEFAULT_REGION=${{ vars.CDK_DEFAULT_REGION }}
 
       - name: Install dependencies
         run: cd $GITHUB_WORKSPACE/semana-3-api-cdk && npm install
 
-      - name: Bootstrap AWS CDK stack
-        run: |
-          export CDK_DEFAULT_ACCOUNT=${{ vars.CDK_DEFAULT_ACCOUNT }}
-          export CDK_DEFAULT_REGION=${{ vars.CDK_DEFAULT_REGION }}
-          echo $CDK_DEFAULT_REGION
-          echo $CDK_DEFAULT_ACCOUNT
-          cd $GITHUB_WORKSPACE/semana-3-api-cdk 
-          npx cdk bootstrap
+      # - name: Bootstrap AWS CDK stack
+      #   run: cd $GITHUB_WORKSPACE/semana-3-api-cdk && npx cdk bootstrap
       
       - name: Synthesize AWS CDK stack
         run: cd $GITHUB_WORKSPACE/semana-3-api-cdk && npx cdk synth
