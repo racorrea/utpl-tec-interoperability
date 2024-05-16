@@ -56,4 +56,4 @@ jobs:
       - name: Deploy AWS CDK stack
         run: |
           echo "Deploying stack..."
-          cd $GITHUB_WORKSPACE/semana-3-api-cdk && npx cdk deploy --all
+          cd $GITHUB_WORKSPACE/semana-3-api-cdk && npx cdk deploy --all --require-approval=never
