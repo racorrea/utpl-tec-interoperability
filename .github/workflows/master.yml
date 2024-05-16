@@ -11,17 +11,11 @@ jobs:
     env:
       AWS_ACCESS_KEY_ID: ${{ vars.AWS_ACCESS_KEY_ID }}  
       AWS_SECRET_ACCESS_KEY: ${{ vars.AWS_SECRET_ACCESS_KEY }}
-      AWS_DEFAULT_REGION: "us-east-1"
+      AWS_DEFAULT_REGION: ${{ vars.AWS_DEFAULT_REGION }}
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
-      - name: Show AWS credentials
-        run: |
-          echo "AWS_ACCESS_KEY_ID: ${{ vars.AWS_ACCESS_KEY_ID }} "
-          echo "AWS_SECRET_ACCESS_KEY: ${{ vars.AWS_SECRET_ACCESS_KEY }}"
-          echo "AWS_DEFAULT_REGION: ${{ vars.AWS_DEFAULT_REGION }}"
 
       - name: Create AWS credentials file
         run: |
@@ -33,12 +27,6 @@ jobs:
           region=$AWS_DEFAULT_REGION
           EOF
 
-      - name: Get AWS credentials file location
-        run: cat ~/.aws/credentials
-
-      - name: Verify AWS credentials
-        run: cat $HOME/.aws/credentials
-
       - name: Configure Environment Variables
         run: |
           export CDK_DEFAULT_ACCOUNT=${{ vars.CDK_DEFAULT_ACCOUNT }}
@@ -47,9 +35,6 @@ jobs:
       - name: Install dependencies
         run: cd $GITHUB_WORKSPACE/semana-3-api-cdk && npm install
 
-      # - name: Bootstrap AWS CDK stack
-      #   run: cd $GITHUB_WORKSPACE/semana-3-api-cdk && npx cdk bootstrap
-      
       - name: Synthesize AWS CDK stack
         run: cd $GITHUB_WORKSPACE/semana-3-api-cdk && npx cdk synth
 

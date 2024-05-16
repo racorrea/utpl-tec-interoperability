@@ -6,8 +6,8 @@ import { HelloWorldLambdaStack } from '../lib/api-cdk-stack';
 const app = new cdk.App();
 
 const environment = {
-  account: process.env.CDK_DEFAULT_ACCOUNT ?? '756557892660',
-  region: process.env.CDK_DEFAULT_REGION ?? 'us-east-1',
+  account: process.env.CDK_DEFAULT_ACCOUNT,
+  region: process.env.CDK_DEFAULT_REGION,
 };
 
 console.log(`Environment: ${environment.account} - ${environment.region}`);
