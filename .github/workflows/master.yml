@@ -2,7 +2,7 @@ name: Deploy Application
 
 on:
   push:
-    branches: [ master ]  # Change to your desired branch
+    branches: [ master ]  # Cambiar según la rama deseada
 
 jobs:
   deploy:
@@ -13,11 +13,10 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Install dependencies
-        run: cd semana3-api-cdk && npm install  # Specify the directory here
+        run: cd ./semana3-api-cdk && npm install
 
       - name: Synthesize AWS CDK stack
-        run: cd semana3-api-cdk && npx cdk synth  # Specify the directory here
+        run: cd ./semana3-api-cdk && npx cdk synth
 
       - name: Deploy AWS CDK stack
-        run: cd semana3-api-cdk && npx cdk deploy --all  # Specify the directory here
-
+        run: cd ./semana3-api-cdk && npx cdk deploy --all
