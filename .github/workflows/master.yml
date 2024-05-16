@@ -2,46 +2,41 @@ name: Deploy Application
 
 on:
   push:
-    branches: [ master ]  # Cambiar según la rama deseada
+    branches: [ master ]  # Change to your desired branch
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     env:
-      AWS_DEFAULT_REGION: "us-east-1"
-      CDK_DEFAULT_ACCOUNT: ${{ secrets.CDK_DEFAULT_ACCOUNT }}
-      CDK_DEFAULT_REGION: ${{ secrets.CDK_DEFAULT_REGION }}
-
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      
+
       - name: Show AWS credentials
         run: |
           echo "AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID"
           echo "AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY"
           echo "AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION"
-          echo "CDK_DEFAULT_ACCOUNT: $CDK_DEFAULT_ACCOUNT"
-          echo "CDK_DEFAULT_REGION: $CDK_DEFAULT_REGION"
-          echo "AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}"
-          echo "AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}"
-          echo "AWS_DEFAULT_REGION: ${{ env.AWS_DEFAULT_REGION }}"
-
-
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v3
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ env.AWS_DEFAULT_REGION }}
 
       - name: Set AWS credentials file location
         run: echo "export AWS_SHARED_CREDENTIALS_FILE=$HOME/.aws/credentials" >> $GITHUB_ENV
 
-      - name: Verificar credenciales de AWS
-        run: cat $HOME/.aws/credentials
+      - name: Create AWS credentials file
+        run: |
+          cat > $HOME/.aws/credentials << EOF
+          [default]
+          aws_access_key_id = ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_access_key = ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          region = ${{ secrets.AWS_DEFAULT_REGION }}
+          EOF
+
+      - name: Verify AWS credentials
+        run: cat $HOME/.aws/credentials && cat ~/.aws/credentials
 
       - name: Install dependencies
         run: cd $GITHUB_WORKSPACE/semana-3-api-cdk && npm install
