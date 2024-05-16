@@ -23,8 +23,8 @@ jobs:
           echo "AWS_SECRET_ACCESS_KEY: ${{ vars.AWS_SECRET_ACCESS_KEY }}"
           echo "AWS_DEFAULT_REGION: ${{ vars.AWS_DEFAULT_REGION }}"
 
-      - name: Set AWS credentials file location
-        run: echo "export AWS_SHARED_CREDENTIALS_FILE=$HOME/.aws/credentials" >> $GITHUB_ENV
+      # - name: Set AWS credentials file location
+      #   run: echo "export AWS_SHARED_CREDENTIALS_FILE=$HOME/.aws/credentials" >> $GITHUB_ENV
 
       - name: Create AWS credentials file
         run: |
