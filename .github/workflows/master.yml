@@ -44,7 +44,7 @@ jobs:
 
       - name: Bootstrap AWS CDK stack
         run: |
-          export CDK_DEFAULT_ACCOUNT=$CDK_DEFAULT_ACCOUNT
+          export CDK_DEFAULT_ACCOUNT=756557892660
           export CDK_DEFAULT_REGION=$CDK_DEFAULT_REGION
           echo $CDK_DEFAULT_REGION
           echo $CDK_DEFAULT_ACCOUNT
