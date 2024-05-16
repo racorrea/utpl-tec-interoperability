@@ -11,7 +11,7 @@ jobs:
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+      AWS_DEFAULT_REGION: "us-east-1"
 
     steps:
       - name: Checkout code
@@ -28,11 +28,12 @@ jobs:
 
       - name: Create AWS credentials file
         run: |
+          mkdir -p $HOME/.aws
           cat > $HOME/.aws/credentials << EOF
           [default]
           aws_access_key_id = ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_access_key = ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          region = ${{ secrets.AWS_DEFAULT_REGION }}
+          region = ${{ env.AWS_DEFAULT_REGION }}
           EOF
 
       - name: Verify AWS credentials
