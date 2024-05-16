@@ -44,8 +44,8 @@ jobs:
 
       - name: Bootstrap AWS CDK stack
         run: |
-          export CDK_DEFAULT_ACCOUNT=$CDK_DEFAULT_ACCOUNT
-          export CDK_DEFAULT_REGION=$CDK_DEFAULT_REGION
+          export CDK_DEFAULT_ACCOUNT=${{ vars.CDK_DEFAULT_ACCOUNT }}
+          export CDK_DEFAULT_REGION=${{ vars.CDK_DEFAULT_REGION }}
           echo $CDK_DEFAULT_REGION
           echo $CDK_DEFAULT_ACCOUNT
           cd $GITHUB_WORKSPACE/semana-3-api-cdk 
