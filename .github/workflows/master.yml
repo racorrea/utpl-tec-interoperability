@@ -42,13 +42,16 @@ jobs:
       - name: Install dependencies
         run: cd $GITHUB_WORKSPACE/semana-3-api-cdk && npm install
 
+      - name: Bootstrap AWS CDK stack
+        run: cd $GITHUB_WORKSPACE/semana-3-api-cdk && npx cdk bootstrap
+      
       - name: Synthesize AWS CDK stack
         run: cd $GITHUB_WORKSPACE/semana-3-api-cdk && npx cdk synth
 
       - name: Deploy AWS CDK stack
         run: |
-          export CDK_DEFAULT_ACCOUNT=$secrets.CDK_DEFAULT_ACCOUNT
-          export CDK_DEFAULT_REGION=$secrets.CDK_DEFAULT_REGION
+          export CDK_DEFAULT_ACCOUNT=$CDK_DEFAULT_ACCOUNT
+          export CDK_DEFAULT_REGION=$CDK_DEFAULT_REGION
           echo "Deploying stack..."
           echo $CDK_DEFAULT_REGION
           echo $CDK_DEFAULT_ACCOUNT
