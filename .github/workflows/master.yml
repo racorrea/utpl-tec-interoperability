@@ -8,15 +8,24 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
+    env:
+      AWS_DEFAULT_REGION: "us-east-1"
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Configure AWS credentials
+        run: |
+          echo "[default]" >> $HOME/.aws/credentials
+          echo "aws_access_key_id=${{ secrets.AWS_ACCESS_KEY_ID }}" >> $HOME/.aws/credentials
+          echo "aws_secret_access_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> $HOME/.aws/credentials
+
       - name: Install dependencies
-        run: cd $GITHUB_WORKSPACE/semana-3-api-cdk && npm install
+        run: cd $GITHUB_WORKSPACE/semana3-api-cdk && npm install
 
       - name: Synthesize AWS CDK stack
-        run: cd $GITHUB_WORKSPACE/semana-3-api-cdk && npx cdk synth
+        run: cd $GITHUB_WORKSPACE/semana3-api-cdk && npx cdk synth
 
       - name: Deploy AWS CDK stack
-        run: cd $GITHUB_WORKSPACE/semana-3-api-cdk && npx cdk deploy --all
+        run: cd $GITHUB_WORKSPACE/semana3-api-cdk && npx cdk deploy --all
