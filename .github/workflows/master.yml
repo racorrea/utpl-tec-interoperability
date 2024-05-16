@@ -10,6 +10,9 @@ jobs:
 
     env:
       AWS_DEFAULT_REGION: "us-east-1"
+      CDK_DEFAULT_ACCOUNT: ${{ secrets.CDK_DEFAULT_ACCOUNT }}
+      CDK_DEFAULT_REGION: ${{ secrets.CDK_DEFAULT_REGION }}
+
 
     steps:
       - name: Checkout code
