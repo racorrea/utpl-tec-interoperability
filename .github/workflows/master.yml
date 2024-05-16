@@ -1,0 +1,22 @@
+name: Deploy Application
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Synthesize AWS CDK stack
+        run: npx cdk synth
+
+      - name: Deploy AWS CDK stack
+        run: npx cdk deploy --all
