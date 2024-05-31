@@ -28,6 +28,13 @@ export class HelloWorldLambdaStack extends Stack {
       code: Code.fromAsset('lambda'),
     })
 
+    const bankingLambda = new Function(this, 'LambdaBanking', {
+      functionName: 'LambdaBanking',
+      runtime: Runtime.NODEJS_16_X,
+      handler: 'banking.handler',
+      code: Code.fromAsset('lambda'),
+    })
+
     databaseLambda.grantInvoke(reponseLambda);
 
     // Crea una API Gateway
@@ -39,11 +46,15 @@ export class HelloWorldLambdaStack extends Stack {
     // Crea un recurso
     const resource = api.root.addResource('hello-world');
     const resourceLambdaResponse = api.root.addResource('trx');
+    const resourceLambdaBanking = api.root.addResource('bank');
+    const resourceLambdaBankingTrx = resourceLambdaBanking.addResource('transactions');
 
     // Crea un método y le asigna la función Lambda
     resource.addMethod('GET', new LambdaIntegration(helloWorldLambda));
 
     resourceLambdaResponse.addMethod('GET', new LambdaIntegration(reponseLambda));
+
+    resourceLambdaBankingTrx.addMethod('GET', new LambdaIntegration(bankingLambda));
 
   }
 }

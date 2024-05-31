@@ -18,7 +18,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/dfb5d426292e84624732a486e618170b13801f70e5e43eabb28401f575257820.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/b19289fce29d4554dbc4748cb5e42efa0e936b0e162945eff9ccde1f877ecbaf.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -76,6 +76,18 @@
             "data": "LambdaResponse31C02815"
           }
         ],
+        "/HelloWorldLambdaStack/LambdaBanking/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LambdaBankingServiceRole07CE8604"
+          }
+        ],
+        "/HelloWorldLambdaStack/LambdaBanking/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LambdaBanking22743248"
+          }
+        ],
         "/HelloWorldLambdaStack/HelloWorldEndpoint/Resource": [
           {
             "type": "aws:cdk:logicalId",
@@ -85,7 +97,7 @@
         "/HelloWorldLambdaStack/HelloWorldEndpoint/Deployment/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "HelloWorldEndpointDeploymentC19C2A8Dd1c4b6e899b54b6e598ff3caa7ea2327"
+            "data": "HelloWorldEndpointDeploymentC19C2A8D6036982af86cdeb28be5bed9b9a7006c"
           }
         ],
         "/HelloWorldLambdaStack/HelloWorldEndpoint/DeploymentStage.prod/Resource": [
@@ -146,6 +158,36 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "HelloWorldEndpointtrxGET6497653F"
+          }
+        ],
+        "/HelloWorldLambdaStack/HelloWorldEndpoint/Default/bank/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "HelloWorldEndpointbankEF2607B4"
+          }
+        ],
+        "/HelloWorldLambdaStack/HelloWorldEndpoint/Default/bank/transactions/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "HelloWorldEndpointbanktransactions605EBAEE"
+          }
+        ],
+        "/HelloWorldLambdaStack/HelloWorldEndpoint/Default/bank/transactions/GET/ApiPermission.HelloWorldLambdaStackHelloWorldEndpoint7CF1957F.GET..bank.transactions": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "HelloWorldEndpointbanktransactionsGETApiPermissionHelloWorldLambdaStackHelloWorldEndpoint7CF1957FGETbanktransactionsD7F2698A"
+          }
+        ],
+        "/HelloWorldLambdaStack/HelloWorldEndpoint/Default/bank/transactions/GET/ApiPermission.Test.HelloWorldLambdaStackHelloWorldEndpoint7CF1957F.GET..bank.transactions": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "HelloWorldEndpointbanktransactionsGETApiPermissionTestHelloWorldLambdaStackHelloWorldEndpoint7CF1957FGETbanktransactions60FCEB22"
+          }
+        ],
+        "/HelloWorldLambdaStack/HelloWorldEndpoint/Default/bank/transactions/GET/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "HelloWorldEndpointbanktransactionsGETF23A15E7"
           }
         ],
         "/HelloWorldLambdaStack/CDKMetadata/Default": [

@@ -105,7 +105,7 @@
                       "s3Bucket": {
                         "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
                       },
-                      "s3Key": "b5d0885175a0a7f7541356aff23da7f0dc4eeeb999e9b4cf80706767b5d71a6c.zip"
+                      "s3Key": "c8ba7a136ba8f523b16267994be8bbe0657f5b42d2ec641093436b97ce10031e.zip"
                     },
                     "handler": "index.handler",
                     "role": {
@@ -225,7 +225,7 @@
                       "s3Bucket": {
                         "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
                       },
-                      "s3Key": "b5d0885175a0a7f7541356aff23da7f0dc4eeeb999e9b4cf80706767b5d71a6c.zip"
+                      "s3Key": "c8ba7a136ba8f523b16267994be8bbe0657f5b42d2ec641093436b97ce10031e.zip"
                     },
                     "functionName": "LambdaDatabase",
                     "handler": "data.handler",
@@ -406,13 +406,134 @@
                       "s3Bucket": {
                         "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
                       },
-                      "s3Key": "b5d0885175a0a7f7541356aff23da7f0dc4eeeb999e9b4cf80706767b5d71a6c.zip"
+                      "s3Key": "c8ba7a136ba8f523b16267994be8bbe0657f5b42d2ec641093436b97ce10031e.zip"
                     },
                     "functionName": "LambdaResponse",
                     "handler": "response.handler",
                     "role": {
                       "Fn::GetAtt": [
                         "LambdaResponseServiceRoleE820EACA",
+                        "Arn"
+                      ]
+                    },
+                    "runtime": "nodejs16.x"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_lambda.CfnFunction",
+                  "version": "2.120.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_lambda.Function",
+              "version": "2.120.0"
+            }
+          },
+          "LambdaBanking": {
+            "id": "LambdaBanking",
+            "path": "HelloWorldLambdaStack/LambdaBanking",
+            "children": {
+              "ServiceRole": {
+                "id": "ServiceRole",
+                "path": "HelloWorldLambdaStack/LambdaBanking/ServiceRole",
+                "children": {
+                  "ImportServiceRole": {
+                    "id": "ImportServiceRole",
+                    "path": "HelloWorldLambdaStack/LambdaBanking/ServiceRole/ImportServiceRole",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.Resource",
+                      "version": "2.120.0"
+                    }
+                  },
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "HelloWorldLambdaStack/LambdaBanking/ServiceRole/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                      "aws:cdk:cloudformation:props": {
+                        "assumeRolePolicyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "sts:AssumeRole",
+                              "Effect": "Allow",
+                              "Principal": {
+                                "Service": "lambda.amazonaws.com"
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "managedPolicyArns": [
+                          {
+                            "Fn::Join": [
+                              "",
+                              [
+                                "arn:",
+                                {
+                                  "Ref": "AWS::Partition"
+                                },
+                                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+                              ]
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                      "version": "2.120.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.Role",
+                  "version": "2.120.0"
+                }
+              },
+              "Code": {
+                "id": "Code",
+                "path": "HelloWorldLambdaStack/LambdaBanking/Code",
+                "children": {
+                  "Stage": {
+                    "id": "Stage",
+                    "path": "HelloWorldLambdaStack/LambdaBanking/Code/Stage",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.AssetStaging",
+                      "version": "2.120.0"
+                    }
+                  },
+                  "AssetBucket": {
+                    "id": "AssetBucket",
+                    "path": "HelloWorldLambdaStack/LambdaBanking/Code/AssetBucket",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_s3.BucketBase",
+                      "version": "2.120.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_s3_assets.Asset",
+                  "version": "2.120.0"
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "HelloWorldLambdaStack/LambdaBanking/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
+                  "aws:cdk:cloudformation:props": {
+                    "code": {
+                      "s3Bucket": {
+                        "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+                      },
+                      "s3Key": "c8ba7a136ba8f523b16267994be8bbe0657f5b42d2ec641093436b97ce10031e.zip"
+                    },
+                    "functionName": "LambdaBanking",
+                    "handler": "banking.handler",
+                    "role": {
+                      "Fn::GetAtt": [
+                        "LambdaBankingServiceRole07CE8604",
                         "Arn"
                       ]
                     },
@@ -486,7 +607,7 @@
                       "aws:cdk:cloudformation:type": "AWS::ApiGateway::Stage",
                       "aws:cdk:cloudformation:props": {
                         "deploymentId": {
-                          "Ref": "HelloWorldEndpointDeploymentC19C2A8Dd1c4b6e899b54b6e598ff3caa7ea2327"
+                          "Ref": "HelloWorldEndpointDeploymentC19C2A8D6036982af86cdeb28be5bed9b9a7006c"
                         },
                         "restApiId": {
                           "Ref": "HelloWorldEndpoint26016DB7"
@@ -878,6 +999,221 @@
                         },
                         "constructInfo": {
                           "fqn": "aws-cdk-lib.aws_apigateway.Method",
+                          "version": "2.120.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_apigateway.Resource",
+                      "version": "2.120.0"
+                    }
+                  },
+                  "bank": {
+                    "id": "bank",
+                    "path": "HelloWorldLambdaStack/HelloWorldEndpoint/Default/bank",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "HelloWorldLambdaStack/HelloWorldEndpoint/Default/bank/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::ApiGateway::Resource",
+                          "aws:cdk:cloudformation:props": {
+                            "parentId": {
+                              "Fn::GetAtt": [
+                                "HelloWorldEndpoint26016DB7",
+                                "RootResourceId"
+                              ]
+                            },
+                            "pathPart": "bank",
+                            "restApiId": {
+                              "Ref": "HelloWorldEndpoint26016DB7"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_apigateway.CfnResource",
+                          "version": "2.120.0"
+                        }
+                      },
+                      "transactions": {
+                        "id": "transactions",
+                        "path": "HelloWorldLambdaStack/HelloWorldEndpoint/Default/bank/transactions",
+                        "children": {
+                          "Resource": {
+                            "id": "Resource",
+                            "path": "HelloWorldLambdaStack/HelloWorldEndpoint/Default/bank/transactions/Resource",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::ApiGateway::Resource",
+                              "aws:cdk:cloudformation:props": {
+                                "parentId": {
+                                  "Ref": "HelloWorldEndpointbankEF2607B4"
+                                },
+                                "pathPart": "transactions",
+                                "restApiId": {
+                                  "Ref": "HelloWorldEndpoint26016DB7"
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.aws_apigateway.CfnResource",
+                              "version": "2.120.0"
+                            }
+                          },
+                          "GET": {
+                            "id": "GET",
+                            "path": "HelloWorldLambdaStack/HelloWorldEndpoint/Default/bank/transactions/GET",
+                            "children": {
+                              "ApiPermission.HelloWorldLambdaStackHelloWorldEndpoint7CF1957F.GET..bank.transactions": {
+                                "id": "ApiPermission.HelloWorldLambdaStackHelloWorldEndpoint7CF1957F.GET..bank.transactions",
+                                "path": "HelloWorldLambdaStack/HelloWorldEndpoint/Default/bank/transactions/GET/ApiPermission.HelloWorldLambdaStackHelloWorldEndpoint7CF1957F.GET..bank.transactions",
+                                "attributes": {
+                                  "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                                  "aws:cdk:cloudformation:props": {
+                                    "action": "lambda:InvokeFunction",
+                                    "functionName": {
+                                      "Fn::GetAtt": [
+                                        "LambdaBanking22743248",
+                                        "Arn"
+                                      ]
+                                    },
+                                    "principal": "apigateway.amazonaws.com",
+                                    "sourceArn": {
+                                      "Fn::Join": [
+                                        "",
+                                        [
+                                          "arn:",
+                                          {
+                                            "Ref": "AWS::Partition"
+                                          },
+                                          ":execute-api:",
+                                          {
+                                            "Ref": "AWS::Region"
+                                          },
+                                          ":",
+                                          {
+                                            "Ref": "AWS::AccountId"
+                                          },
+                                          ":",
+                                          {
+                                            "Ref": "HelloWorldEndpoint26016DB7"
+                                          },
+                                          "/",
+                                          {
+                                            "Ref": "HelloWorldEndpointDeploymentStageprod9BAE1CDF"
+                                          },
+                                          "/GET/bank/transactions"
+                                        ]
+                                      ]
+                                    }
+                                  }
+                                },
+                                "constructInfo": {
+                                  "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
+                                  "version": "2.120.0"
+                                }
+                              },
+                              "ApiPermission.Test.HelloWorldLambdaStackHelloWorldEndpoint7CF1957F.GET..bank.transactions": {
+                                "id": "ApiPermission.Test.HelloWorldLambdaStackHelloWorldEndpoint7CF1957F.GET..bank.transactions",
+                                "path": "HelloWorldLambdaStack/HelloWorldEndpoint/Default/bank/transactions/GET/ApiPermission.Test.HelloWorldLambdaStackHelloWorldEndpoint7CF1957F.GET..bank.transactions",
+                                "attributes": {
+                                  "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                                  "aws:cdk:cloudformation:props": {
+                                    "action": "lambda:InvokeFunction",
+                                    "functionName": {
+                                      "Fn::GetAtt": [
+                                        "LambdaBanking22743248",
+                                        "Arn"
+                                      ]
+                                    },
+                                    "principal": "apigateway.amazonaws.com",
+                                    "sourceArn": {
+                                      "Fn::Join": [
+                                        "",
+                                        [
+                                          "arn:",
+                                          {
+                                            "Ref": "AWS::Partition"
+                                          },
+                                          ":execute-api:",
+                                          {
+                                            "Ref": "AWS::Region"
+                                          },
+                                          ":",
+                                          {
+                                            "Ref": "AWS::AccountId"
+                                          },
+                                          ":",
+                                          {
+                                            "Ref": "HelloWorldEndpoint26016DB7"
+                                          },
+                                          "/test-invoke-stage/GET/bank/transactions"
+                                        ]
+                                      ]
+                                    }
+                                  }
+                                },
+                                "constructInfo": {
+                                  "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
+                                  "version": "2.120.0"
+                                }
+                              },
+                              "Resource": {
+                                "id": "Resource",
+                                "path": "HelloWorldLambdaStack/HelloWorldEndpoint/Default/bank/transactions/GET/Resource",
+                                "attributes": {
+                                  "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                                  "aws:cdk:cloudformation:props": {
+                                    "authorizationType": "NONE",
+                                    "httpMethod": "GET",
+                                    "integration": {
+                                      "type": "AWS_PROXY",
+                                      "uri": {
+                                        "Fn::Join": [
+                                          "",
+                                          [
+                                            "arn:",
+                                            {
+                                              "Ref": "AWS::Partition"
+                                            },
+                                            ":apigateway:",
+                                            {
+                                              "Ref": "AWS::Region"
+                                            },
+                                            ":lambda:path/2015-03-31/functions/",
+                                            {
+                                              "Fn::GetAtt": [
+                                                "LambdaBanking22743248",
+                                                "Arn"
+                                              ]
+                                            },
+                                            "/invocations"
+                                          ]
+                                        ]
+                                      },
+                                      "integrationHttpMethod": "POST"
+                                    },
+                                    "resourceId": {
+                                      "Ref": "HelloWorldEndpointbanktransactions605EBAEE"
+                                    },
+                                    "restApiId": {
+                                      "Ref": "HelloWorldEndpoint26016DB7"
+                                    }
+                                  }
+                                },
+                                "constructInfo": {
+                                  "fqn": "aws-cdk-lib.aws_apigateway.CfnMethod",
+                                  "version": "2.120.0"
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.aws_apigateway.Method",
+                              "version": "2.120.0"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_apigateway.Resource",
                           "version": "2.120.0"
                         }
                       }
